@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+
+<div th:replace="/fragments/header :: header"></div>
+
+<div class="container">
+    <div th:if="${param.error}">
+        <p class="alert-red">Неправильный логин или пароль</p>
+    </div>
+    <div th:if="${param.logout}">
+        <p class="alert-green"> Вы успешно вышли из системы</p>
+    </div>
+
+    <form th:action="@{/signin}" method="post">
+        <div>
+            <input type="text" name="username" id="username" placeholder="UserName" required="true" autofocus="true"/>
+        </div>
+        <div>
+            <input type="password" name="password" id="password" placeholder="Password" required="true"/>
+        </div>
+        <div class="align-center">
+            <label for="remember-me">Запомнить</label>
+            <input type="checkbox" id="remember-me" name="remember-me">
+        </div>
+        <div>
+            <input type="submit" class="green-btn" value="Войти"/>
+        </div>
+        <div>
+            <p>Ещё не зарегестрированны? <a href="/signup">Регистрация!</a></p>
+        </div>
+    </form>
+
+</div>
+
+
+</body>
+</html>

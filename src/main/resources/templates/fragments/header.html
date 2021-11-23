@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<header th:fragment="header">
+    <div class="topnav">
+        <a class="active" th:href="@{/}">Статьи</a>
+        <span sec:authorize="hasRole('ROLE_USER')">
+        <a class="active" th:href="@{/createNewPost}">Написать статью</a>
+        </span>
+        <span sec:authorize="isAuthenticated()">
+        <a class="active" th:href="@{/stocks}">Чат</a>
+
+        <a class="right" th:href="@{/logout}">Выйти</a>
+        </span>
+
+        <a class="active" th:href="@{/stock}">Курс и новости</a>
+        <a class="active" th:href="@{/contacts}">Контакты</a>
+        <span sec:authorize="isAuthenticated()">
+            <a class="right">Добро пожаловать, <span sec:authentication="name">name?</span></a>
+        </span>
+        <span sec:authorize="!isAuthenticated()">
+        <a class="right" th:href="@{/signin}">Войти</a>
+        <a class="right" th:href="@{/signup}">Регистрация</a>
+        </span>
+    </div>
+    <div class="header">
+
+    </div>
+</header>
+
+</body>
+
+</html>

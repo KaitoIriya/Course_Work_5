@@ -1,0 +1,25 @@
+insert into USERS (ID, PASSWORD, USERNAME, ENABLED)
+VALUES (0, '', 'anonymous', true);
+insert into USERS (ID, PASSWORD, USERNAME, ENABLED)
+VALUES (1, '$2a$06$OAPObzhRdRXBCbk7Hj/ot.jY3zPwR8n7/mfLtKIgTzdJa4.6TwsIm', 'admin', true);
+insert into USERS (ID, PASSWORD, USERNAME, ENABLED)
+VALUES (2, '$2a$06$OAPObzhRdRXBCbk7Hj/ot.jY3zPwR8n7/mfLtKIgTzdJa4.6TwsIm', 'user', true);
+
+insert into AUTHORITIES (ID, AUTHORITY)
+VALUES (0, 'ROLE_ANONYMOUS');
+insert into AUTHORITIES (ID, AUTHORITY)
+VALUES (1, 'ROLE_ADMIN');
+insert into AUTHORITIES (ID, AUTHORITY)
+VALUES (2, 'ROLE_USER');
+
+insert into USERS_AUTHORITIES (USER_ID, AUTHORITY_ID)
+VALUES (1, 1);
+insert into USERS_AUTHORITIES (USER_ID, AUTHORITY_ID)
+VALUES (1, 2);
+insert into USERS_AUTHORITIES (USER_ID, AUTHORITY_ID)
+VALUES (2, 2);
+
+
+
+
+

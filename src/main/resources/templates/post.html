@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="/fragments/head :: head"></head>
+<body>
+
+<div th:replace="/fragments/header :: header"></div>
+
+<div class="container">
+    <div class="post">
+        <h2 th:text="${post.title}">Title</h2>
+        <h5 th:text="'Опубликовано ' + ${#dates.format(post.creationDate, 'dd MMMM yyyy')} + ' пользователем ' + ${post.user.username}">Creation date and by whom</h5>
+
+        <p th:text="${post.body}">body text</p>
+        <div class="align-right" sec:authorize="isAuthenticated()" th:if="${isOwner}">
+
+        </div>
+    </div>
+    <div class="comments">
+        <h2>Комментарии</h2>
+        <div class="comment" th:each="comment : ${post.comments}">
+            <hr>
+            <h5 th:text="'Прокомментировано ' + ${#dates.format(post.creationDate, 'dd-MM-yyyy')} + ' пользователем ' + ${comment.user.username}">Comment date and by whom</h5>
+            <p th:text="${comment.body}">Body</p>
+
+            <hr>
+
+        </div>
+
+    </div>
+    <div class="align-center">
+        <a th:href="@{'/editPost/{id}'(id=${post.id})}">
+            <button class="green-btn blue-btn" type="button">Редактировать</button>
+        </a>
+        <a th:href="@{'/comment/{id}'(id=${post.id})}">
+            <button class="green-btn" type="button">Прокомментировать</button>
+        </a>
+    </div>
+    <br>
+</div>
+
+</body>
+</html>
